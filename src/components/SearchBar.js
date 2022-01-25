@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const SearchBar = () => {
+const SearchBar = ({ onSubmit }) => {
+  const [term, setTerm] = useState('');
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    onSubmit(term);
+  };
   return (
-    <form class="ui form">
-  <div class="field">
-    <label>First Name</label>
-    <input type="text" name="first-name" placeholder="First Name" />
-  </div>
+    <div className='ui segment'>
+        <form onSubmit={onFormSubmit} className="ui form">
+        <div className="field">
+        <label>Image Search</label>
+        <input type="text" name="search" placeholder="" value={term} onChange={(event) => {
+          setTerm(event.target.value);
+          }}
+          />
+        
+        </div>
 
-</form>
+       </form>
+
+    </div>
   );
 };
 
